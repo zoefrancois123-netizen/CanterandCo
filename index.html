@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Canter & Co Services | Somerset West</title>
+    <meta
+      name="description"
+      content="Premium equestrian, pet, home, childcare, tutoring, and wall art services in Somerset West, Stellenbosch, and Strand."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Canter and Co home">
+        <img src="assets/brand/Monologue.png" alt="Canter and Co monogram" />
+        <span>
+          <strong>Canter & Co Services</strong>
+          <small>Somerset West</small>
+        </span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#about">About Chloe</a>
+        <a href="#services">Services</a>
+        <a href="#art">Wall Art</a>
+        <a href="#faq">FAQ</a>
+        <a href="#booking">Book</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Care - Coaching - Confidence</p>
+          <h1>Trusted support for families, pets, riders, and homes.</h1>
+          <p>
+            Canter & Co is a warm, reliable service provider in Somerset West, caring for the things
+            families value most: children, animals, homes, confidence, and calm.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#booking">Book an Appointment</a>
+            <a class="button secondary" href="#services">View Services</a>
+          </div>
+        </div>
+        <div class="hero-mark" aria-label="Canter and Co Services">
+          <img src="assets/brand/canter-co-services-logo.png" alt="Canter and Co Services" />
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="Service values">
+        <span>Warm</span>
+        <span>Reliable</span>
+        <span>Professional</span>
+        <span>Local</span>
+      </section>
+
+      <section class="section intro">
+        <div>
+          <p class="eyebrow">A calm extra pair of hands</p>
+          <h2>Premium support with a personal touch.</h2>
+        </div>
+        <p>
+          From show preparation and schooling support to pet sitting, babysitting, tutoring, and
+          home visits, Canter & Co brings steady care and practical help to busy families in the
+          Somerset West, Stellenbosch, and Strand area.
+        </p>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="about-photo">
+          <img
+            src="assets/about/Chloe and Beasty.jpeg"
+            alt="Chloe with a horse"
+            onerror="this.hidden = true; this.parentElement.classList.add('missing-photo');"
+          />
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">About Chloe</p>
+          <h2>Confident, capable, and naturally caring.</h2>
+          <p>
+            Chloe is in her final school year and has been involved with horses since she was born.
+            She is an accomplished equestrian with a calm, confident way around horses, children,
+            pets, and families.
+          </p>
+          <p>
+            A top ten student at Somerset College and a school prefect, Chloe is reliable,
+            responsible, and warm. Her approach is practical and trustworthy, with the kind of
+            quiet confidence that helps both people and animals feel settled.
+          </p>
+          <div class="about-highlights" aria-label="Chloe highlights">
+            <span>Accomplished equestrian</span>
+            <span>Top ten student</span>
+            <span>Somerset College prefect</span>
+            <span>Wonderful with children and animals</span>
+          </div>
+          <div class="contact-card">
+            <strong>Contact Chloe</strong>
+            <a href="tel:+27766099533">076 609 9533</a>
+            <a href="mailto:chloe.f0778@gmail.com">chloe.f0778@gmail.com</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section services" id="services">
+        <div class="section-heading">
+          <p class="eyebrow">Services</p>
+          <h2>Choose the care you need.</h2>
+        </div>
+        <div class="service-grid">
+          <article>
+            <span class="service-number">01</span>
+            <h3>Horse Services</h3>
+            <p>Practical, capable support for riders and horses.</p>
+            <ul>
+              <li>Flat work lessons</li>
+              <li>Jumping lessons</li>
+              <li>Basics groundwork lessons</li>
+              <li>Schooling sessions</li>
+              <li>Horse show prep and show help</li>
+            </ul>
+          </article>
+          <article>
+            <span class="service-number">02</span>
+            <h3>House and Pet Sitting</h3>
+            <p>Considerate care while you are away or need help at home.</p>
+            <ul>
+              <li>House sitting</li>
+              <li>Pet sitting</li>
+              <li>Feeding and check-ins</li>
+              <li>Animal routines and updates</li>
+              <li>Local Somerset West visits</li>
+            </ul>
+          </article>
+          <article>
+            <span class="service-number">03</span>
+            <h3>Child Services</h3>
+            <p>Gentle, trustworthy support for children and families.</p>
+            <ul>
+              <li>Babysitting</li>
+              <li>Tutoring</li>
+              <li>Homework support</li>
+              <li>Confidence-led learning</li>
+              <li>Family-friendly scheduling</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="art-section" id="art">
+        <div class="art-copy">
+          <p class="eyebrow">Wall art</p>
+          <h2>Prints with warmth, courage, and quiet confidence.</h2>
+          <p>
+            Chloe also creates uplifting wall art for bedrooms, study spaces, stables, and family
+            homes. Browse a small selection below, then visit the Etsy shop for the full collection.
+          </p>
+          <a class="button primary etsy-link" href="https://www.etsy.com/" target="_blank" rel="noopener">Visit the Etsy Shop</a>
+        </div>
+        <div class="art-gallery" aria-label="Wall art preview">
+          <figure>
+            <img src="assets/art/Confidence.png" alt="Confidence wall art print" />
+            <figcaption>Confidence</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/art/Calm.png" alt="Calm wall art print" />
+            <figcaption>Calm</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/art/Trust.png" alt="Trust wall art print" />
+            <figcaption>Trust</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/art/Partnership.png" alt="Partnership wall art print" />
+            <figcaption>Partnership</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq">
+        <div class="section-heading">
+          <p class="eyebrow">FAQ</p>
+          <h2>Good things to know before booking.</h2>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>Where does Canter & Co work?</summary>
+            <p>Canter & Co is based at Sitari Country Estate and serves Somerset West, Stellenbosch, and Strand by arrangement.</p>
+          </details>
+          <details>
+            <summary>How do bookings work?</summary>
+            <p>Complete the booking form with your preferred date, location, and service. Chloe will confirm availability and any details needed before the appointment is final.</p>
+          </details>
+          <details>
+            <summary>Can I book more than one day?</summary>
+            <p>Yes. Use the notes field to list multiple dates, recurring needs, or any special instructions for homes, pets, children, or horses.</p>
+          </details>
+          <details>
+            <summary>Do you support private yards and family homes?</summary>
+            <p>Yes. Please include the yard name, home area, access notes, and anything Chloe should know before arriving.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="booking-section" id="booking">
+        <div class="booking-intro">
+          <p class="eyebrow">Book an appointment</p>
+          <h2>Tell us what you need.</h2>
+          <p>
+            This public form sends Chloe a booking enquiry only. Private calendar, client, and invoice details stay inside the Canter & Co planner.
+          </p>
+          <div class="map-card">
+            <iframe
+              title="Map of Glen Graze on Firgrove Road"
+              src="https://www.google.com/maps?q=Glen%20Graze%2C%20Firgrove%20Road%2C%20Somerset%20West%2C%20South%20Africa&z=11&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+
+        <form class="booking-form" id="public-booking-form">
+          <div class="booking-choice-panel" aria-label="Choose booking type">
+            <p class="eyebrow">Choose booking type</p>
+            <h3>How can we help you today?</h3>
+            <div class="booking-choice-options">
+              <button class="booking-choice active" type="button" data-service-type="horse">
+                <strong>Equestrian services</strong>
+                <span>Lessons, show prep, schooling, and show help</span>
+              </button>
+              <button class="booking-choice" type="button" data-service-type="house-pet">
+                <strong>House and pet sitting services</strong>
+                <span>House sitting, pet sitting, and animal care</span>
+              </button>
+              <button class="booking-choice" type="button" data-service-type="child">
+                <strong>Baby sitting and tutoring</strong>
+                <span>Baby sitting and tutoring bookings</span>
+              </button>
+            </div>
+          </div>
+          <div class="form-row">
+            <label>
+              Name
+              <input required name="name" autocomplete="name" placeholder="Your name" />
+            </label>
+            <label>
+              Phone
+              <input required name="phone" autocomplete="tel" placeholder="+27 82 000 0000" />
+            </label>
+          </div>
+          <label>
+            Email
+            <input required type="email" name="email" autocomplete="email" placeholder="you@email.com" />
+          </label>
+          <input type="hidden" name="serviceType" id="service-type" value="horse" />
+          <div class="form-row">
+            <label>
+              Preferred date
+              <input type="date" name="date" />
+            </label>
+            <label>
+              Preferred time
+              <input type="time" name="time" value="09:00" />
+            </label>
+          </div>
+          <label>
+            Service
+            <select name="service" id="service-select"></select>
+          </label>
+          <div class="form-row" id="dynamic-fields"></div>
+          <label>
+            Location
+            <select name="location">
+              <option>Somerset West</option>
+              <option>Stellenbosch</option>
+              <option>Strand</option>
+            </select>
+          </label>
+          <label>
+            Notes
+            <textarea name="notes" rows="4" placeholder="Tell us about dates, times, pets, children, horses, access notes, or anything important."></textarea>
+          </label>
+          <button class="button primary" type="submit" id="submit-booking-request">Send Booking Request</button>
+          <p class="form-note" id="form-note">Your request will be sent to Chloe for approval before it is added to the diary.</p>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <img src="assets/brand/canter-co-services-logo.png" alt="Canter and Co Services" />
+      <p>Canter & Co Services - Somerset West, South Africa</p>
+      <p><a href="tel:+27766099533">076 609 9533</a> · <a href="mailto:chloe.f0778@gmail.com">chloe.f0778@gmail.com</a></p>
+      <a href="#booking">Book an Appointment</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
