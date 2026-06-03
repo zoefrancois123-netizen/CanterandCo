@@ -160,29 +160,28 @@ async function submitBookingRequest(form) {
   submitButton.disabled = true;
   note.textContent = "Sending your request to Chloe...";
 
-  if (publicBookingClient) {
-    const { error } = await publicBookingClient.from("booking_requests").insert({
-      status: "pending",
-      request: payload,
-    });
-
-    if (!error) {
-      form.reset();
-      document.getElementById("service-type").value = payload.serviceType;
-      renderServiceForm();
-      note.textContent = "Thank you. Your request has been sent to Chloe for approval before it is added to the diary.";
-      submitButton.disabled = false;
-      return;
-    }
-
-    note.textContent = `The planner connection failed: ${error.message}. Opening email instead.`;
-  } else {
-    note.textContent = "The planner connection did not load. Opening email instead.";
+  if (!publicBookingClient) {
+    const { subject, body } = buildBookingEmail(payload);
+    note.innerHTML = `The planner connection did not load. Please email Chloe directly at <a href="mailto:${bookingEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}">${bookingEmail}</a>.`;
+    submitButton.disabled = false;
+    return;
   }
 
-  const { subject, body } = buildBookingEmail(payload);
-  window.location.href = `mailto:${bookingEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  note.textContent = "We could not send directly to the planner, so your email app should open with the request ready to send.";
+  const { error } = await publicBookingClient.from("booking_requests").insert({
+    status: "pending",
+    request: payload,
+  });
+
+  if (!error) {
+    form.reset();
+    document.getElementById("service-type").value = payload.serviceType;
+    renderServiceForm();
+    note.textContent = "Thank you. Your request has been sent to Chloe for approval before it is added to the diary.";
+    submitButton.disabled = false;
+    return;
+  }
+
+  note.textContent = `The planner connection failed: ${error.message}. Please contact Chloe directly at ${bookingEmail}.`;
   submitButton.disabled = false;
 }
 
