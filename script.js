@@ -96,6 +96,16 @@ function renderServiceForm() {
   });
 }
 
+function updatePlannerConnectionStatus() {
+  const note = document.getElementById("form-note");
+  if (!note) return;
+  if (publicBookingClient) {
+    note.textContent = "Planner connection ready. Requests will be sent to Chloe for approval.";
+  } else {
+    note.textContent = "Planner connection did not load. Requests cannot be sent to Chloe's approval inbox yet.";
+  }
+}
+
 function formValue(form, name) {
   return new FormData(form).get(name) || "";
 }
@@ -176,12 +186,14 @@ async function submitBookingRequest(form) {
     form.reset();
     document.getElementById("service-type").value = payload.serviceType;
     renderServiceForm();
-    note.textContent = "Thank you. Your request has been sent to Chloe for approval before it is added to the diary.";
+    note.textContent = "Success. Your request is now in Chloe's Website Requests approval inbox.";
+    alert("Your request has been sent to Chloe for approval.");
     submitButton.disabled = false;
     return;
   }
 
   note.textContent = `The planner connection failed: ${error.message}. Please contact Chloe directly at ${bookingEmail}.`;
+  alert(`The planner connection failed: ${error.message}`);
   submitButton.disabled = false;
 }
 
@@ -202,3 +214,4 @@ document.querySelectorAll(".etsy-link").forEach((link) => {
 });
 
 renderServiceForm();
+updatePlannerConnectionStatus();
