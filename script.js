@@ -4,7 +4,13 @@ const bookingEmail = "chloe.f0778@gmail.com";
 const etsyShopUrl = "https://www.etsy.com/shop/HouseofCastlemaine";
 
 const publicBookingClient = window.supabase
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+        detectSessionInUrl: false,
+      },
+    })
   : null;
 
 const servicesByType = {
