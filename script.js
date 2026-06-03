@@ -174,6 +174,10 @@ async function submitBookingRequest(form) {
       submitButton.disabled = false;
       return;
     }
+
+    note.textContent = `The planner connection failed: ${error.message}. Opening email instead.`;
+  } else {
+    note.textContent = "The planner connection did not load. Opening email instead.";
   }
 
   const { subject, body } = buildBookingEmail(payload);
