@@ -1,6 +1,6 @@
 const SUPABASE_URL = "https://notlmqtzvsbokjuhtgkh.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5vdGxtcXR6dnNib2tqdWh0Z2toIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzODA2NDgsImV4cCI6MjA5NTk1NjY0OH0.fdDpm42L_SXInt6oZDOD9rTQrUO8Qw6DV3pEzN2O-sk";
-const bookingEmail = "chloe.f0778@gmail.com";
+const bookingEmail = "chloe@canterandco.co.za";
 const etsyShopUrl = "https://www.etsy.com/shop/HouseofCastlemaine";
 
 const publicBookingClient = window.supabase
