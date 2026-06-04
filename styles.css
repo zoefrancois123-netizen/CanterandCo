@@ -53,8 +53,8 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 22px;
-  min-height: 76px;
-  padding: 12px clamp(18px, 5vw, 70px);
+  min-height: 88px;
+  padding: 10px clamp(18px, 5vw, 70px);
   color: var(--cream);
   background: rgba(21, 18, 15, 0.95);
   border-bottom: 1px solid rgba(216, 174, 114, 0.26);
@@ -64,33 +64,35 @@ textarea {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  min-width: 220px;
+  gap: 15px;
+  min-width: 270px;
 }
 
 .brand img {
-  width: 54px;
-  height: 54px;
-  border: 1px solid rgba(216, 174, 114, 0.32);
-  padding: 5px;
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgba(216, 174, 114, 0.52);
+  padding: 4px;
   object-fit: contain;
   background: #050403;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
 }
 
 .brand strong {
   display: block;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.05rem;
+  font-size: 1.3rem;
+  font-weight: 700;
   line-height: 1.05;
 }
 
 .brand small {
   display: block;
-  margin-top: 3px;
-  color: var(--gold-soft);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  margin-top: 6px;
+  color: var(--gold);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
@@ -671,16 +673,45 @@ textarea:focus {
 footer {
   display: grid;
   place-items: center;
-  gap: 12px;
-  padding: 42px 20px;
+  gap: 16px;
+  padding: 54px 20px 48px;
   color: var(--cream);
   background: var(--ink);
   text-align: center;
 }
 
-footer img {
-  width: 104px;
-  border: 1px solid rgba(216, 174, 114, 0.32);
+.footer-brand {
+  display: grid;
+  place-items: center;
+  gap: 14px;
+}
+
+.footer-brand img {
+  width: 156px;
+  height: 156px;
+  border: 1px solid rgba(216, 174, 114, 0.52);
+  padding: 7px;
+  object-fit: contain;
+  background: #050403;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.42);
+}
+
+.footer-brand strong {
+  display: block;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+
+.footer-brand small {
+  display: block;
+  margin-top: 7px;
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 footer p {
@@ -691,6 +722,39 @@ footer p {
 footer a {
   color: var(--gold-soft);
   font-weight: 900;
+}
+
+.footer-location {
+  font-size: 0.96rem;
+}
+
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+}
+
+.footer-contact a {
+  color: var(--cream);
+  font-size: 1rem;
+}
+
+.footer-booking {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  margin-top: 4px;
+  border: 1px solid var(--gold);
+  border-radius: 7px;
+  padding: 10px 20px;
+  color: var(--ink);
+  background: var(--gold);
+}
+
+.footer-booking:hover {
+  background: var(--gold-soft);
 }
 
 @media (max-width: 980px) {
@@ -723,6 +787,24 @@ footer a {
 }
 
 @media (max-width: 640px) {
+  .brand {
+    min-width: 0;
+  }
+
+  .brand img {
+    width: 62px;
+    height: 62px;
+  }
+
+  .brand strong {
+    font-size: 1.12rem;
+  }
+
+  .footer-brand img {
+    width: 132px;
+    height: 132px;
+  }
+
   h1 {
     font-size: clamp(2.55rem, 12vw, 3.35rem);
   }
