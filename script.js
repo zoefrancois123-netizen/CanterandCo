@@ -29,8 +29,17 @@ const servicesByType = {
     { id: "pet-sitting", label: "Pet Sitting - R50" },
   ],
   child: [
-    { id: "baby-sitting", label: "Baby sitting - R300" },
-    { id: "tutoring", label: "Tutoring" },
+    { id: "baby-sitting-6hr", label: "Baby Sitting (6hr) - R300" },
+    { id: "baby-sitting-full-day", label: "Baby Sitting (Full day 8-5) - R500" },
+    { id: "baby-sitting-overnight", label: "Baby Sitting (Overnight) - R400" },
+    { id: "tutoring-english-online", label: "Tutoring English Home Language (1hr & Online) - R200" },
+    { id: "tutoring-english-in-person", label: "Tutoring English Home Language (1hr & in person) - R300" },
+    { id: "tutoring-afrikaans-online", label: "Tutoring Afrikaans FAL (1hr & Online) - R200" },
+    { id: "tutoring-afrikaans-in-person", label: "Tutoring Afrikaans FAL (1hr & in person) - R300" },
+    { id: "tutoring-maths-lit-online", label: "Tutoring Maths Lit (1hr & Online) - R200" },
+    { id: "tutoring-maths-lit-in-person", label: "Tutoring Maths Lit (1hr & in person) - R300" },
+    { id: "tutoring-drama-theory-online", label: "Tutoring Drama Theory (1hr & Online) - R200" },
+    { id: "tutoring-drama-theory-in-person", label: "Tutoring Drama Theory (1hr & in person) - R300" },
   ],
 };
 
@@ -206,6 +215,13 @@ async function submitBookingRequest(form) {
 document.querySelectorAll(".booking-choice").forEach((button) => {
   button.addEventListener("click", () => {
     document.getElementById("service-type").value = button.dataset.serviceType;
+    renderServiceForm();
+  });
+});
+
+document.querySelectorAll(".pricing-booking-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    document.getElementById("service-type").value = link.dataset.bookingType;
     renderServiceForm();
   });
 });
