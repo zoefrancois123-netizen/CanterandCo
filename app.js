@@ -9,31 +9,31 @@ const LEGACY_STORAGE_KEYS = [
 const services = [
   {
     id: "show-prep-mane",
-    name: "Horse Show Prep - Mane Only",
+    name: "Plaiting Mane",
     price: 250,
     unit: "session",
     category: "equestrian",
-    description: "Mane preparation for show day.",
+    description: "Mane plaiting for show day.",
   },
   {
     id: "show-prep-mane-tail",
-    name: "Horse Show Prep - Mane & Tail",
+    name: "Plaiting Mane & Tail",
     price: 300,
     unit: "session",
     category: "equestrian",
-    description: "Mane and tail preparation for show day.",
+    description: "Mane and tail plaiting for show day.",
   },
   {
     id: "show-prep-tail",
-    name: "Horse Show Prep - Tail Only",
+    name: "Plaiting Tail",
     price: 50,
     unit: "session",
     category: "equestrian",
-    description: "Tail preparation for show day.",
+    description: "Tail plaiting for show day.",
   },
   {
     id: "beginner-lesson",
-    name: "Flat work Lesson",
+    name: "Flat Work Lesson",
     price: 300,
     unit: "lesson",
     category: "equestrian",
@@ -49,7 +49,7 @@ const services = [
   },
   {
     id: "basics-ground-work",
-    name: "Basics Ground Work Lesson",
+    name: "Basics Ground Work Lesson at Glen Graze (30 mins)",
     price: 200,
     unit: "lesson",
     category: "equestrian",
@@ -62,14 +62,6 @@ const services = [
     unit: "session",
     category: "equestrian",
     description: "A schooling session to keep horses moving and progressing.",
-  },
-  {
-    id: "show-day-support",
-    name: "Show Help",
-    price: 400,
-    unit: "day",
-    category: "equestrian",
-    description: "Show-day help, grooming touch-ups, and rider support.",
   },
   {
     id: "baby-sitting-6hr",
@@ -106,7 +98,7 @@ const services = [
   {
     id: "tutoring-english-in-person",
     name: "Tutoring English Home Language (1hr & in person)",
-    price: 300,
+    price: 250,
     unit: "lesson",
     category: "baby-tutoring",
     description: "In-person English Home Language tutoring.",
@@ -122,7 +114,7 @@ const services = [
   {
     id: "tutoring-afrikaans-in-person",
     name: "Tutoring Afrikaans FAL (1hr & in person)",
-    price: 300,
+    price: 250,
     unit: "lesson",
     category: "baby-tutoring",
     description: "In-person Afrikaans FAL tutoring.",
@@ -138,7 +130,7 @@ const services = [
   {
     id: "tutoring-maths-lit-in-person",
     name: "Tutoring Maths Lit (1hr & in person)",
-    price: 300,
+    price: 250,
     unit: "lesson",
     category: "baby-tutoring",
     description: "In-person Maths Lit tutoring.",
@@ -154,10 +146,53 @@ const services = [
   {
     id: "tutoring-drama-theory-in-person",
     name: "Tutoring Drama Theory (1hr & in person)",
-    price: 300,
+    price: 250,
     unit: "lesson",
     category: "baby-tutoring",
     description: "In-person Drama Theory tutoring.",
+  },
+  {
+    id: "house-pet-sitting-overnight",
+    name: "House & Pet Sitting (Overnight)",
+    price: 350,
+    unit: "booking",
+    category: "house-pet",
+    description: "Overnight care for the home and pets.",
+  },
+  {
+    id: "house-sitting-overnight",
+    name: "House Sitting (Overnight)",
+    price: 300,
+    unit: "booking",
+    category: "house-pet",
+    description: "Overnight house sitting service.",
+  },
+  {
+    id: "pet-sitting-check-in",
+    name: "Pet Sitting (Daily check-in, feeding & walk)",
+    price: 100,
+    unit: "visit",
+    category: "house-pet",
+    description: "A daily check-in including feeding and a walk.",
+  },
+  {
+    id: "pet-sitting-feeding",
+    name: "Pet Sitting (Daily feeding)",
+    price: 75,
+    unit: "visit",
+    category: "house-pet",
+    description: "A daily feeding visit.",
+  },
+];
+
+const legacyServices = [
+  {
+    id: "show-day-support",
+    name: "Show Help",
+    price: 400,
+    unit: "day",
+    category: "equestrian",
+    description: "Previous service retained for booking and invoice history.",
   },
   {
     id: "house-sitting",
@@ -165,7 +200,7 @@ const services = [
     price: 400,
     unit: "booking",
     category: "house-pet",
-    description: "House sitting service.",
+    description: "Previous service retained for booking and invoice history.",
   },
   {
     id: "pet-sitting",
@@ -173,7 +208,7 @@ const services = [
     price: 50,
     unit: "booking",
     category: "house-pet",
-    description: "Pet sitting service.",
+    description: "Previous service retained for booking and invoice history.",
   },
 ];
 
@@ -442,7 +477,9 @@ function id(prefix) {
 
 function serviceById(serviceId) {
   if (serviceId === "show-prep") return services.find((service) => service.id === "show-prep-mane-tail");
-  return services.find((service) => service.id === serviceId) || services[0];
+  return services.find((service) => service.id === serviceId)
+    || legacyServices.find((service) => service.id === serviceId)
+    || services[0];
 }
 
 function horseById(horseId) {
@@ -1357,6 +1394,9 @@ function renderInvoicePreview() {
         <p class="eyebrow">Invoice</p>
         <h2>${invoice.number}</h2>
         <p>Issued ${formatDate(invoice.createdAt.slice(0, 10))}<br />Due ${formatDate(invoice.dueDate)}</p>
+        <button class="invoice-email-button" type="button" data-action="email-preview-invoice" data-id="${invoice.id}">
+          Email Invoice
+        </button>
       </div>
     </header>
     <section class="invoice-parties">
@@ -1903,6 +1943,13 @@ document.getElementById("invoice-list").addEventListener("click", (event) => {
     renderInvoicePreview();
     window.print();
   }
+});
+
+document.getElementById("invoice-preview").addEventListener("click", (event) => {
+  const button = event.target.closest('[data-action="email-preview-invoice"]');
+  if (!button) return;
+  const invoice = state.invoices.find((item) => item.id === button.dataset.id);
+  if (invoice) emailInvoice(invoice);
 });
 
 document.getElementById("start-date-picker").value = todayPlus(1);
