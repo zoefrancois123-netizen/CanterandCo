@@ -3,408 +3,284 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Canter & Co Services Planner</title>
+    <title>Canter & Co Services | Somerset West</title>
+    <meta
+      name="description"
+      content="Premium equestrian, pet, home, childcare, tutoring, and wall art services in Somerset West, Stellenbosch, and Strand."
+    />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   </head>
-  <body class="locked">
-    <section class="auth-gate" id="auth-gate">
-      <div class="auth-card">
-        <img src="assets/canter-co-services-logo.png" alt="Canter and Co Services" />
-        <p class="eyebrow">Cloud sync</p>
-        <h1>Log in to Canter & Co Services Planner</h1>
-        <p>Log in before making bookings so clients, invoices, and history sync across Chloe's phone and computer.</p>
-        <input id="gate-login-email" type="email" placeholder="Email" />
-        <input id="gate-login-password" type="password" placeholder="Password" />
-        <button id="gate-login-button" class="primary" type="button">Log in</button>
-        <span id="gate-cloud-status">Local only</span>
-      </div>
-    </section>
-
-    <header class="topbar">
-      <a class="brand" href="#calendar" aria-label="Canter and Co home">
-        <img src="assets/canter-co-services-logo.png" alt="Canter and Co Services" />
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Canter and Co home">
+        <img src="assets/brand/Monologue.png" alt="Canter and Co monogram" />
         <span>
           <strong>Canter & Co Services</strong>
-          <small>Planner</small>
+          <small>Somerset West</small>
         </span>
       </a>
-      <nav class="tabs" aria-label="Main views">
-        <button class="tab active" data-view="calendar">Calendar</button>
-        <button class="tab" data-view="bookings">Bookings</button>
-        <button class="tab" data-view="website-requests">Website Requests</button>
-        <button class="tab" data-view="clients">Clients</button>
-        <button class="tab" data-view="invoices">Invoices</button>
-        <button class="tab" data-view="services">Services</button>
+      <nav aria-label="Main navigation">
+        <a href="#about">About Chloe</a>
+        <a href="#services">Services</a>
+        <a href="#art">Wall Art</a>
+        <a href="#faq">FAQ</a>
+        <a href="#booking">Book</a>
       </nav>
-      <button id="logout-button" class="ghost" type="button">Log out</button>
     </header>
 
-    <main>
-      <section class="booking-type-panel" aria-label="Choose booking type">
-        <div>
-          <p class="eyebrow">Choose booking type</p>
-          <h2>How can we help you today?</h2>
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Care - Coaching - Confidence</p>
+          <h1>Trusted support for families, pets, riders, and homes.</h1>
+          <p>
+            Canter & Co is a warm, reliable service provider in Somerset West, caring for the things
+            families value most: children, animals, homes, confidence, and calm.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#booking">Book an Appointment</a>
+            <a class="button secondary" href="#services">View Services</a>
+          </div>
         </div>
-        <div class="booking-type-options">
-          <button class="booking-type active" type="button" data-category="equestrian">
-            <strong>Equestrian services</strong>
-            <span>Lessons, show prep, schooling, and show help</span>
-          </button>
-          <button class="booking-type" type="button" data-category="house-pet">
-            <strong>House and pet sitting services</strong>
-            <span>House sitting, pet sitting, and animal care</span>
-          </button>
-          <button class="booking-type" type="button" data-category="baby-tutoring">
-            <strong>Baby sitting and tutoring</strong>
-            <span>Baby sitting and tutoring bookings</span>
-          </button>
+        <div class="hero-mark" aria-label="Canter and Co Services">
+          <img src="assets/brand/canter-co-services-logo.png" alt="Canter and Co Services" />
         </div>
       </section>
 
-      <section class="hero">
+      <section class="trust-strip" aria-label="Service values">
+        <span>Warm</span>
+        <span>Reliable</span>
+        <span>Professional</span>
+        <span>Local</span>
+      </section>
+
+      <section class="section intro">
         <div>
-          <img class="hero-logo" src="assets/canter-co-services-logo.png" alt="Canter and Co Services" />
-          <p class="eyebrow">Care - Coaching - Confidence</p>
-          <h1>Canter & Co Services Planner</h1>
+          <p class="eyebrow">A calm extra pair of hands</p>
+          <h2>Premium support with a personal touch.</h2>
+        </div>
+        <p>
+          From show preparation and schooling support to pet sitting, babysitting, tutoring, and
+          home visits, Canter & Co brings steady care and practical help to busy families in the
+          Somerset West, Stellenbosch, and Strand area.
+        </p>
+      </section>
+
+      <section class="about-section" id="about">
+        <div class="about-photo">
+          <img
+            src="assets/about/Chloe and Beasty.jpeg"
+            alt="Chloe with a horse"
+            onerror="this.hidden = true; this.parentElement.classList.add('missing-photo');"
+          />
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">About Chloe</p>
+          <h2>Confident, capable, and naturally caring.</h2>
           <p>
-            Tracking bookings for our services - a polished way to book our time
+            Chloe is in her final school year and has been involved with horses since she was born.
+            She is an accomplished equestrian with a calm, confident way around horses, children,
+            pets, and families.
+          </p>
+          <p>
+            A top ten student at Somerset College and a school prefect, Chloe is reliable,
+            responsible, and warm. Her approach is practical and trustworthy, with the kind of
+            quiet confidence that helps both people and animals feel settled.
+          </p>
+          <div class="about-highlights" aria-label="Chloe highlights">
+            <span>Accomplished equestrian</span>
+            <span>Top ten student</span>
+            <span>Somerset College prefect</span>
+            <span>Wonderful with children and animals</span>
+          </div>
+          <div class="contact-card">
+            <strong>Contact Chloe</strong>
+            <a href="tel:+27766099533">076 609 9533</a>
+            <a href="mailto:chloe.f0778@gmail.com">chloe.f0778@gmail.com</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section services" id="services">
+        <div class="section-heading">
+          <p class="eyebrow">Services & pricing</p>
+          <h2>Choose the care you need.</h2>
+          <p class="section-intro">
+            Clear, thoughtful support for horses, homes, pets, children, and families.
           </p>
         </div>
-        <form id="booking-form" class="booking-panel">
-          <div class="panel-title">
-            <span id="booking-form-title">Equestrian services request</span>
-            <strong id="booking-total">R 950</strong>
-          </div>
+        <div class="pricing-gallery">
+          <article class="pricing-sheet">
+            <img
+              src="assets/services/equine-services-pricing.png"
+              alt="Canter and Co equine services and prices"
+            />
+            <a class="button primary pricing-booking-link" href="#booking" data-booking-type="horse">Book Equine Services</a>
+          </article>
+          <article class="pricing-sheet">
+            <img
+              src="assets/services/pet-house-sitting-pricing.png"
+              alt="Canter and Co pet and house sitting services and prices"
+            />
+            <a class="button primary pricing-booking-link" href="#booking" data-booking-type="house-pet">Book House or Pet Sitting</a>
+          </article>
+          <article class="pricing-sheet pricing-sheet-tall">
+            <img
+              src="assets/services/tutoring-babysitting-pricing.png"
+              alt="Canter and Co tutoring and babysitting services and prices"
+            />
+            <a class="button primary pricing-booking-link" href="#booking" data-booking-type="child">Book Child Services</a>
+          </article>
+        </div>
+      </section>
 
-          <div class="form-section">
-            <h3>Client Details Responsible for Payment</h3>
+      <section class="art-section" id="art">
+        <div class="art-copy">
+          <p class="eyebrow">Wall art</p>
+          <h2>Prints with warmth, courage, and quiet confidence.</h2>
+          <p>
+            Chloe also creates uplifting wall art for bedrooms, study spaces, stables, and family
+            homes. Browse a small selection below, then visit the Etsy shop for the full collection.
+          </p>
+          <a class="button primary etsy-link" href="https://www.etsy.com/" target="_blank" rel="noopener">Visit the Etsy Shop</a>
+        </div>
+        <div class="art-gallery" aria-label="Wall art preview">
+          <figure>
+            <img src="assets/art/Confidence.png" alt="Confidence wall art print" />
+            <figcaption>Confidence</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/art/Calm.png" alt="Calm wall art print" />
+            <figcaption>Calm</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/art/Trust.png" alt="Trust wall art print" />
+            <figcaption>Trust</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/art/Partnership.png" alt="Partnership wall art print" />
+            <figcaption>Partnership</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq">
+        <div class="section-heading">
+          <p class="eyebrow">FAQ</p>
+          <h2>Good things to know before booking.</h2>
+        </div>
+        <div class="faq-list">
+          <details open>
+            <summary>Where does Canter & Co work?</summary>
+            <p>Canter & Co is based at Sitari Country Estate and serves Somerset West, Stellenbosch, and Strand by arrangement.</p>
+          </details>
+          <details>
+            <summary>How do bookings work?</summary>
+            <p>Complete the booking form with your preferred date, location, and service. Chloe will confirm availability and any details needed before the appointment is final.</p>
+          </details>
+          <details>
+            <summary>Can I book more than one day?</summary>
+            <p>Yes. Use the notes field to list multiple dates, recurring needs, or any special instructions for homes, pets, children, or horses.</p>
+          </details>
+          <details>
+            <summary>Do you support private yards and family homes?</summary>
+            <p>Yes. Please include the yard name, home area, access notes, and anything Chloe should know before arriving.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="booking-section" id="booking">
+        <div class="booking-intro">
+          <p class="eyebrow">Book an appointment</p>
+          <h2>Tell us what you need.</h2>
+          <p>
+            This public form sends Chloe a booking enquiry only. Private calendar, client, and invoice details stay inside the Canter & Co planner.
+          </p>
+          <div class="map-card">
+            <iframe
+              title="Map of Glen Graze on Firgrove Road"
+              src="https://www.google.com/maps?q=Glen%20Graze%2C%20Firgrove%20Road%2C%20Somerset%20West%2C%20South%20Africa&z=11&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+
+        <form class="booking-form" id="public-booking-form">
+          <div class="booking-choice-panel" aria-label="Choose booking type">
+            <p class="eyebrow">Choose booking type</p>
+            <h3>How can we help you today?</h3>
+            <div class="booking-choice-options">
+              <button class="booking-choice active" type="button" data-service-type="horse">
+                <strong>Equestrian services</strong>
+                <span>Lessons, show prep, schooling, and show help</span>
+              </button>
+              <button class="booking-choice" type="button" data-service-type="house-pet">
+                <strong>House and pet sitting services</strong>
+                <span>House sitting, pet sitting, and animal care</span>
+              </button>
+              <button class="booking-choice" type="button" data-service-type="child">
+                <strong>Baby sitting and tutoring</strong>
+                <span>Baby sitting and tutoring bookings</span>
+              </button>
+            </div>
+          </div>
+          <div class="form-row">
             <label>
-              Clients Name and Surname
-              <input required name="clientName" placeholder="e.g. Emma Hart" />
-            </label>
-            <div class="two-col">
-              <label>
-                Email
-                <input required type="email" name="email" placeholder="client@email.com" />
-              </label>
-              <label>
-                Phone
-                <input required name="phone" placeholder="+27 82 000 0000" />
-              </label>
-            </div>
-          </div>
-
-          <div class="form-section" id="appointment-details-section">
-            <h3 id="appointment-details-heading">Animal and location</h3>
-            <label id="booking-horse-field">
-              <span id="booking-horse-label">Horse / Animal</span>
-              <select name="horseName" id="booking-horse-name"></select>
-            </label>
-            <input type="hidden" name="lessonHorseId" id="booking-horse" value="own-horse" />
-            <div class="two-col">
-              <label id="rider-age-field">
-                <span id="rider-age-label">Rider age</span>
-                <input type="number" min="3" max="100" step="1" name="riderAge" placeholder="Age" />
-              </label>
-              <label id="own-horse-name-field">
-                <span id="own-horse-name-label">Own Horse/Animal Name</span>
-                <input name="ownHorseName" id="own-horse-name" placeholder="Only if using own horse" />
-              </label>
-            </div>
-            <div class="two-col">
-              <label id="own-horse-location-field">
-                <span id="own-horse-location-label">Broad appointment location</span>
-                <select required name="ownHorseLocation" id="own-horse-location">
-                  <option value="">Choose location</option>
-                  <option value="Glen Graze">Glen Graze</option>
-                  <option value="Stellenbosch">Stellenbosch</option>
-                  <option value="Paarl">Paarl</option>
-                  <option value="Somerset west">Somerset west</option>
-                  <option value="Cape Town">Cape Town</option>
-                  <option value="Other">Other</option>
-                </select>
-              </label>
-              <label id="private-yard-name-field">
-                <span id="private-yard-name-label">Private yard name</span>
-                <input name="privateYardName" id="private-yard-name" placeholder="Only if using client's own horse" />
-              </label>
-            </div>
-          </div>
-
-          <div class="form-section">
-            <h3>Service</h3>
-            <div class="two-col">
-              <label>
-                Service
-                <select name="serviceId" id="booking-service"></select>
-              </label>
-              <label>
-                Service charge
-                <input required type="number" min="0" step="10" name="serviceRate" id="booking-service-rate" />
-              </label>
-            </div>
-          </div>
-
-          <div class="form-section">
-            <h3>Date and time</h3>
-            <div class="date-builder">
-              <div class="date-range-controls">
-                <label>
-                  Preferred date
-                  <input type="date" id="start-date-picker" />
-                </label>
-                <label id="end-date-field" hidden>
-                  End date
-                  <input type="date" id="end-date-picker" />
-                </label>
-                <label class="check-row compact-check" id="end-date-na-field" hidden>
-                  <input type="checkbox" id="end-date-na" checked />
-                  End Date NA
-                </label>
-              </div>
-              <input type="hidden" name="dates" />
-            </div>
-            <div class="two-col time-repeat-grid">
-              <label>
-                Preferred Time
-                <input required type="time" name="time" value="09:00" />
-              </label>
-              <label>
-                Number of appointments
-                <input type="number" min="1" max="52" step="1" name="repeatWeeks" value="4" />
-              </label>
-            </div>
-            <input type="hidden" name="horseRate" id="booking-horse-rate" value="0" />
-            <input type="hidden" name="quantity" value="1" />
-            <div class="repeat-box">
-              <label class="check-row">
-                <input type="checkbox" name="repeatWeekly" />
-                Repeat weekly
-              </label>
-              <label class="check-row">
-                <input type="checkbox" name="repeatFortnightly" />
-                Repeat every fortnight
-              </label>
-            </div>
-          </div>
-
-          <div class="form-section">
-            <h3>Notes</h3>
-            <label>
-              Notes
-              <textarea name="notes" rows="3" placeholder="Show class, horse care notes, tack needs, stable address..."></textarea>
-            </label>
-            <p class="policy-note">Appointments can only be rescheduled at least 48 hours in advance.</p>
-          </div>
-
-          <button class="primary submit-booking" type="submit">Request booking</button>
-        </form>
-      </section>
-
-      <section class="metrics" aria-label="Business summary">
-        <article>
-          <span>Upcoming bookings</span>
-          <strong id="metric-upcoming">0</strong>
-        </article>
-        <article>
-          <span>Unpaid invoices</span>
-          <strong id="metric-unpaid">R 0</strong>
-        </article>
-        <article>
-          <span>Active clients</span>
-          <strong id="metric-clients">0</strong>
-        </article>
-        <article>
-          <span>This month booked</span>
-          <strong id="metric-month">R 0</strong>
-        </article>
-      </section>
-
-      <section id="calendar" class="view active">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Diary</p>
-            <h2>Booking calendar</h2>
-          </div>
-          <div class="actions">
-            <button id="calendar-prev" class="ghost" type="button">Previous</button>
-            <button id="calendar-today" class="ghost" type="button">Today</button>
-            <button id="calendar-next" class="ghost" type="button">Next</button>
-          </div>
-        </div>
-        <div class="calendar-shell">
-          <div class="calendar-title" id="calendar-title"></div>
-          <div class="calendar-weekdays">
-            <span>Mon</span>
-            <span>Tue</span>
-            <span>Wed</span>
-            <span>Thu</span>
-            <span>Fri</span>
-            <span>Sat</span>
-            <span>Sun</span>
-          </div>
-          <div id="calendar-grid" class="calendar-grid"></div>
-        </div>
-      </section>
-
-      <section id="bookings" class="view">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Schedule</p>
-            <h2>Booking requests</h2>
-          </div>
-          <div class="actions">
-            <select id="booking-filter" aria-label="Filter bookings">
-              <option value="all">All bookings</option>
-              <option value="Requested">Requested</option>
-              <option value="Confirmed">Confirmed</option>
-              <option value="Completed">Completed</option>
-              <option value="Cancelled">Cancelled</option>
-            </select>
-            <button id="seed-demo" class="ghost" type="button">Load sample data</button>
-          </div>
-        </div>
-        <div id="booking-list" class="list"></div>
-      </section>
-
-      <section id="website-requests" class="view">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Website</p>
-            <h2>Pending booking requests</h2>
-          </div>
-          <button id="refresh-website-requests" class="ghost" type="button">Refresh requests</button>
-        </div>
-        <p class="policy-note">Approve a website request before it is added to Chloe's diary. Declined requests stay out of the calendar.</p>
-        <div id="website-request-list" class="list"></div>
-      </section>
-
-      <section id="clients" class="view">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">People and horses</p>
-            <h2>Client database</h2>
-          </div>
-          <button id="new-client" class="primary" type="button">New client</button>
-        </div>
-        <div class="client-layout">
-          <form id="client-form" class="editor">
-            <input type="hidden" name="clientId" />
-            <label>
-              Client name
-              <input required name="clientName" placeholder="Client name" />
-            </label>
-            <label>
-              Email
-              <input required type="email" name="email" placeholder="client@email.com" />
+              Name
+              <input required name="name" autocomplete="name" placeholder="Your name" />
             </label>
             <label>
               Phone
-              <input required name="phone" placeholder="+27 82 000 0000" />
+              <input required name="phone" autocomplete="tel" placeholder="+27 82 000 0000" />
             </label>
-            <label>
-              Horse / rider
-              <input name="horseName" placeholder="Horse name or beginner rider" />
-            </label>
-            <label>
-              Rider age
-              <input type="number" min="3" max="100" step="1" name="riderAge" placeholder="Age for lesson planning" />
-            </label>
-            <label>
-              Yard / stable address
-              <input name="stableAddress" placeholder="Where the horse is kept" />
-            </label>
-            <label>
-              Emergency contact
-              <input name="emergencyContact" placeholder="Optional emergency number" />
-            </label>
-            <label>
-              Client notes
-              <textarea name="notes" rows="4" placeholder="Preferences, horse temperament, lesson goals, show notes..."></textarea>
-            </label>
-            <button class="primary" type="submit">Save client</button>
-          </form>
-          <div id="client-list" class="client-grid"></div>
-        </div>
-        <article class="database-panel">
-          <h3>Client database history</h3>
-          <div id="client-history" class="history-list"></div>
-        </article>
-      </section>
-
-      <section id="invoices" class="view">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Invoices</p>
-            <h2>Equestrian Services</h2>
           </div>
-          <button id="create-invoice" class="primary" type="button">Create invoice</button>
-        </div>
-        <div class="invoice-layout">
-          <form id="invoice-form" class="editor">
+          <label>
+            Email
+            <input required type="email" name="email" autocomplete="email" placeholder="you@email.com" />
+          </label>
+          <input type="hidden" name="serviceType" id="service-type" value="horse" />
+          <div class="form-row">
             <label>
-              Client
-              <select name="clientId" id="invoice-client"></select>
+              Preferred date
+              <input type="date" name="date" />
             </label>
             <label>
-              Existing bookings to include
-              <select multiple name="bookingIds" id="invoice-bookings" size="6"></select>
+              Preferred time
+              <input type="time" name="time" value="09:00" />
             </label>
-            <div class="invoice-builder">
-              <div class="two-col">
-                <label>
-                  Service to charge
-                  <select id="invoice-service"></select>
-                </label>
-                <label>
-                  Quantity
-                  <input id="invoice-quantity" type="number" min="1" step="1" value="1" />
-                </label>
-              </div>
-              <button id="add-invoice-line" class="ghost" type="button">Add service to invoice</button>
-              <div id="invoice-draft" class="invoice-draft"></div>
-            </div>
-            <label>
-              Due date
-              <input required type="date" name="dueDate" />
-            </label>
-            <label>
-              Message
-              <textarea name="message" rows="4">Thank you for booking with Canter & Co.</textarea>
-            </label>
-          </form>
-          <div>
-            <div id="invoice-list" class="list compact"></div>
-            <article id="invoice-preview" class="invoice-preview">
-              <p>Select or create an invoice to preview it here.</p>
-            </article>
           </div>
-        </div>
-        <article class="database-panel">
-          <h3>Invoice database history</h3>
-          <div id="invoice-history" class="history-list"></div>
-        </article>
-      </section>
-
-      <section id="services" class="view">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Offerings</p>
-            <h2>Services and prices</h2>
-          </div>
-        </div>
-        <div id="service-list" class="service-grid"></div>
+          <label>
+            Service
+            <select name="service" id="service-select"></select>
+          </label>
+          <div class="form-row" id="dynamic-fields"></div>
+          <label>
+            Location
+            <select name="location">
+              <option>Somerset West</option>
+              <option>Stellenbosch</option>
+              <option>Strand</option>
+            </select>
+          </label>
+          <label>
+            Notes
+            <textarea name="notes" rows="4" placeholder="Tell us about dates, times, pets, children, horses, access notes, or anything important."></textarea>
+          </label>
+          <button class="button primary" type="submit" id="submit-booking-request">Send Booking Request</button>
+          <p class="form-note" id="form-note">Your request will be sent to Chloe for approval before it is added to the diary.</p>
+        </form>
       </section>
     </main>
 
-    <template id="empty-template">
-      <div class="empty">
-        <strong>Nothing here yet.</strong>
-        <span>New bookings and invoices will appear here as they are added.</span>
-      </div>
-    </template>
+    <footer>
+      <img src="assets/brand/canter-co-services-logo.png" alt="Canter and Co Services" />
+      <p>Canter & Co Services - Somerset West, South Africa</p>
+      <p><a href="tel:+27766099533">076 609 9533</a> · <a href="mailto:chloe.f0778@gmail.com">chloe.f0778@gmail.com</a></p>
+      <a href="#booking">Book an Appointment</a>
+    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js?v=20260604-email-invoice"></script>
+    <script src="script.js"></script>
   </body>
 </html>
