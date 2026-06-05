@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://canterandco.co.za/sitemap.xml
