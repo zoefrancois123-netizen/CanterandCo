@@ -155,8 +155,14 @@ function bookingPayload(form) {
 
 function buildBookingEmail(payload) {
   const parts = [
-    "New Canter & Co booking request",
+    "Canter & Co Services",
+    "New website booking request",
     "",
+    "Hi Chloe,",
+    "",
+    "A new booking request has come in from the Canter & Co website. The request is waiting in the planner for approval.",
+    "",
+    "REQUEST DETAILS",
     `Name: ${payload.clientName}`,
     `Phone: ${payload.phone}`,
     `Email: ${payload.email}`,
@@ -170,10 +176,12 @@ function buildBookingEmail(payload) {
     "",
     "Notes:",
     payload.notes || "No notes added.",
+    "",
+    "Care - Coaching - Confidence",
   ];
 
   return {
-    subject: `Canter & Co booking request - ${payload.serviceLabel}`,
+    subject: `New booking request: ${payload.serviceLabel}`,
     body: parts.join("\n"),
   };
 }
@@ -199,6 +207,9 @@ async function submitBookingRequest(form) {
   });
 
   if (!error) {
+    publicBookingClient.functions.invoke("send-booking-request", {
+      body: payload,
+    });
     form.reset();
     document.getElementById("service-type").value = payload.serviceType;
     renderServiceForm();

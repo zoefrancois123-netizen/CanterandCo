@@ -1,0 +1,148 @@
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+const escapeHtml = (value: unknown) =>
+  String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+const fieldRow = (label: string, value: unknown) => `
+  <tr>
+    <td style="padding:12px 0;border-bottom:1px solid #eadfce;color:#a55f48;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;width:185px;">${label}</td>
+    <td style="padding:12px 0;border-bottom:1px solid #eadfce;color:#15120f;font-size:15px;font-weight:700;">${escapeHtml(value || "Not specified")}</td>
+  </tr>
+`;
+
+Deno.serve(async (request) => {
+  if (request.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
+  try {
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) {
+      throw new Error("The Resend API key has not been added to Supabase.");
+    }
+
+    const payload = await request.json();
+    if (!payload?.clientName || !payload?.phone || !payload?.email || !payload?.serviceLabel) {
+      throw new Error("The booking request is missing required information.");
+    }
+
+    const subject = `New booking request: ${payload.serviceLabel}`;
+    const submittedDate = payload.submittedAt
+      ? new Date(payload.submittedAt).toLocaleString("en-ZA", {
+          dateStyle: "medium",
+          timeStyle: "short",
+          timeZone: "Africa/Johannesburg",
+        })
+      : "Just now";
+
+    const text = [
+      "Canter & Co Services",
+      "New website booking request",
+      "",
+      "Hi Chloe,",
+      "",
+      "A new booking request has come in from the website and is waiting in the planner for approval.",
+      "",
+      `Client: ${payload.clientName}`,
+      `Phone: ${payload.phone}`,
+      `Email: ${payload.email}`,
+      `Service type: ${payload.serviceTypeLabel}`,
+      `Service: ${payload.serviceLabel}`,
+      `Preferred date: ${payload.date || "Not specified"}`,
+      `Preferred time: ${payload.time || "Not specified"}`,
+      `Location: ${payload.location || "Not specified"}`,
+      `Details: ${payload.detailsOne || "Not specified"}`,
+      `Extra details: ${payload.detailsTwo || "Not specified"}`,
+      "",
+      "Notes:",
+      payload.notes || "No notes added.",
+      "",
+      "Open the Canter & Co planner to approve or decline this request.",
+    ].join("\n");
+
+    const html = `
+      <div style="margin:0;padding:0;background:#f7efe3;font-family:Arial,Helvetica,sans-serif;color:#15120f;">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f7efe3;">
+          <tr>
+            <td align="center" style="padding:34px 16px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:720px;background:#fff9ee;border:1px solid #e3d2ba;border-radius:14px;overflow:hidden;box-shadow:0 20px 55px rgba(35,31,27,.12);">
+                <tr>
+                  <td style="background:#15120f;padding:28px 30px 24px;border-bottom:3px solid #d8ae72;">
+                    <p style="margin:0 0 8px;color:#d8ae72;font-size:12px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;">Canter & Co Services</p>
+                    <h1 style="margin:0;color:#fff9ee;font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:1.05;">New website booking request</h1>
+                    <p style="margin:14px 0 0;color:#f1d9b2;font-size:15px;line-height:1.6;">A new request is waiting in the planner for Chloe to approve.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:28px 30px 14px;">
+                    <p style="margin:0 0 18px;color:#536676;font-size:14px;">Submitted ${escapeHtml(submittedDate)}</p>
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+                      ${fieldRow("Client", payload.clientName)}
+                      ${fieldRow("Phone", payload.phone)}
+                      ${fieldRow("Email", payload.email)}
+                      ${fieldRow("Service type", payload.serviceTypeLabel)}
+                      ${fieldRow("Service", payload.serviceLabel)}
+                      ${fieldRow("Preferred date", payload.date)}
+                      ${fieldRow("Preferred time", payload.time)}
+                      ${fieldRow("Location", payload.location)}
+                      ${fieldRow("Details", payload.detailsOne)}
+                      ${fieldRow("Extra details", payload.detailsTwo)}
+                    </table>
+                    <div style="margin-top:22px;padding:18px 20px;background:#fffdf8;border:1px solid #eadfce;border-radius:10px;">
+                      <p style="margin:0 0 8px;color:#a55f48;font-size:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;">Notes</p>
+                      <p style="margin:0;color:#15120f;font-size:15px;line-height:1.65;">${escapeHtml(payload.notes || "No notes added.")}</p>
+                    </div>
+                    <p style="margin:24px 0 0;color:#15120f;font-size:15px;line-height:1.65;">Open the Canter & Co planner to approve or decline this request.</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:22px 30px 30px;">
+                    <img src="https://canterandco.co.za/assets/brand/chloe-email-signature.png" alt="Chloe Francois - Canter and Co" style="display:block;width:100%;max-width:660px;border:0;border-radius:10px;" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+    `;
+
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Canter & Co Website <chloe@canterandco.co.za>",
+        reply_to: payload.email,
+        to: ["chloe@canterandco.co.za"],
+        subject,
+        text,
+        html,
+      }),
+    });
+
+    const result = await resendResponse.json();
+    if (!resendResponse.ok) {
+      throw new Error(result?.message || "Resend could not send the booking request email.");
+    }
+
+    return new Response(JSON.stringify({ id: result.id }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 400,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+});
