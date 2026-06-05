@@ -247,5 +247,20 @@ document.querySelectorAll(".etsy-link").forEach((link) => {
   link.href = etsyShopUrl;
 });
 
+const collaborationNote = document.querySelector(".collaboration-note");
+if (collaborationNote && "IntersectionObserver" in window) {
+  const collaborationObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) return;
+      collaborationNote.classList.add("is-visible");
+      collaborationObserver.disconnect();
+    },
+    { threshold: 0.45 }
+  );
+  collaborationObserver.observe(collaborationNote);
+} else {
+  collaborationNote?.classList.add("is-visible");
+}
+
 renderServiceForm();
 updatePlannerConnectionStatus();

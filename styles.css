@@ -265,6 +265,61 @@ h3 {
   font-size: 1.15rem;
 }
 
+.intro .collaboration-note {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  grid-column: 2;
+  margin-top: 18px;
+  padding: 16px 18px 16px 14px;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  color: rgba(35, 31, 27, 0.78);
+  background: rgba(216, 174, 114, 0.12);
+  overflow: hidden;
+  transform: translateY(16px);
+  opacity: 0;
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.intro .collaboration-note.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.collaboration-note img {
+  width: 108px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(35, 31, 27, 0.12);
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  box-shadow: 0 14px 36px rgba(35, 31, 27, 0.12);
+  transform: scale(0.78);
+  transition: transform 1200ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 1200ms ease;
+}
+
+.collaboration-note.is-visible img {
+  transform: scale(1.08);
+  box-shadow: 0 22px 54px rgba(35, 31, 27, 0.18);
+}
+
+.collaboration-note strong {
+  display: block;
+  color: var(--clay);
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.collaboration-note small {
+  display: block;
+  margin-top: 6px;
+  color: rgba(35, 31, 27, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 .about-section {
   display: grid;
   grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1fr);
@@ -394,35 +449,6 @@ h3 {
   color: var(--ink);
   background: var(--gold);
   font-weight: 900;
-}
-
-.collaboration-section {
-  display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
-  gap: clamp(24px, 5vw, 64px);
-  align-items: center;
-  padding: clamp(34px, 5vw, 58px) clamp(20px, 6vw, 86px);
-  color: var(--cream);
-  background: var(--ink);
-  border-top: 1px solid rgba(216, 174, 114, 0.28);
-  border-bottom: 1px solid rgba(216, 174, 114, 0.28);
-}
-
-.collaboration-section h2 {
-  max-width: 700px;
-  font-size: clamp(2rem, 4vw, 3.8rem);
-}
-
-.collaboration-section p:not(.eyebrow) {
-  margin: 0;
-  color: rgba(255, 249, 238, 0.78);
-  font-size: 1.02rem;
-}
-
-.collaboration-section a {
-  color: var(--gold-soft);
-  font-weight: 900;
-  border-bottom: 1px solid rgba(216, 174, 114, 0.6);
 }
 
 @keyframes portrait-drift {
@@ -790,7 +816,6 @@ footer a {
   .hero,
   .intro,
   .about-section,
-  .collaboration-section,
   .art-section,
   .booking-section {
     grid-template-columns: 1fr;
@@ -869,5 +894,14 @@ footer a {
   .trust-strip span {
     border-right: 0;
     border-bottom: 1px solid var(--line);
+  }
+
+  .intro .collaboration-note {
+    grid-column: auto;
+    grid-template-columns: 86px minmax(0, 1fr);
+  }
+
+  .collaboration-note img {
+    width: 86px;
   }
 }
